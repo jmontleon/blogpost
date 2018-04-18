@@ -33,7 +33,7 @@ The VNC Desktop APB is pretty standard. Right now we have included two plans, wi
 
 One of the first questions that came up when developing the APB was which desktop to use. But since APB's make choices easy we decided to make several available. Right now we have nine options available and would like to add Gnome and Cinnamon if we can figure out how to get them running in a container.
 
-As you might imagine users will also probably prefer one shell and resolution combination over others so we made multiple options available for each. Each of these parameters are passed into the container as environment variables on the vnc-desktop pod and where options are set up by the entrypoint script.
+As you might imagine users will also probably prefer one shell and resolution combination over others so we made multiple options available for each. Each of these parameters are passed into the container as environment variables on the vnc-desktop pod where they are acted on by the entrypoint script.
 
 ```
     - name: de
