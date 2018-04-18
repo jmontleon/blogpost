@@ -59,6 +59,9 @@ As you might imagine users will also probably prefer one shell and resolution co
 These parameters are exposed in the UI as dropdowns where users can make their selections.
 ![Image of Parameters](https://github.com/jmontleon/blogpost/blob/master/parameters.png)
 
+Once choices are made and the APB completes provisioning you will be left with two pods and a route.
+
+
 Updating Your Choices
 ---------------------
 
