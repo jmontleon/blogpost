@@ -70,7 +70,11 @@ If all goes well you'll now have a VNC session running in your browser:
 
 Updating Your Choices
 ---------------------
-You may have noticed in the snippet above that each of the parameters included a line, `updatable: true`. We have also included the `updates_to` option on each plan. By doing so users can now edit the provisioned service and switch between distributions and desktop environments, resolutions, and shell combinations at will until they find something that suits their needs.
+You may have noticed in the snippet above that each of the parameters included a line, `updatable: true`. We have also included the `updates_to` option on each plan. By doing so users can now edit the provisioned service and switch between distributions and desktop environments, resolutions, and shell combinations at will until they find something that suits their needs. The YouTube demo linked below demonstrates this functionality.
+
+YouTube
+-------
+[VNC Desktop APB Demo](https://youtu.be/Rm28II0Qzwk)
 
 Code Links
 ----------
@@ -78,7 +82,3 @@ Code Links
 [Fedora 28 Container](https://github.com/fusor/dockerfiles/tree/master/vnc-desktop:f28)  
 [Fedora 27 Container](https://github.com/fusor/dockerfiles/tree/master/vnc-desktop:f27)  
 [noVNC Container](https://github.com/fusor/dockerfiles/tree/master/vnc-client:latest)
-
-YouTube
--------
-[VNC Desktop APB Demo](https://youtu.be/Rm28II0Qzwk)
