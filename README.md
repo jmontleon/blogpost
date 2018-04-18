@@ -3,17 +3,21 @@ VNC Desktop with Automation Broker
 
 Introduction
 ------------
+We recently had the idea to create a VNC Desktop APB that would deploy a pod running VNC. The idea was that this might be useful for troubleshooting connectivity issues within the cluster by including a web browser along with the bind-utils and net-tools packages.
 
+The earliest version of the APB created a deployment config and associated service. But that meant you had to manually configure a standard VNC viewer to connect to the pod. The service also wasn't accessible from outside of the cluster, which could make connecting to it difficult.
 
+At this point we decided it would be much easier to use if we had noVNC running so that we could connect to the VNC server using a route. Once we got noVNC working we realized we had something interesting. Whether troubleshooting, trying out different desktops, or maybe even setting up kiosks by launching multiple instances in different namespaces this APB shows some interesting potential.
 
-VNC Server
-----------
+The vnc-desktop Containers
+--------------------------
+Running vnc within a container actually proved to be very easy. By using the `-fg` flag vncserver remains in the foreground. The remainder of the logic in the entrypoint script logic deals with arbitary UID support and configuring the environment based on choices made by the user.
 
+By changing just the FROM statement in the Dockerfile we were able to create containers for both Fedora 27 and Fedora 28.
 
-
-noVNC
------
-This container was very easy to create thanks to a launch script that was recently added. Aside from installing dependency packages all we needed to do is clone the git repository, link the vnc.html file to index.html and set the entrypoint to start the script.
+The vnc-client Container
+------------------------
+This container was very easy to create thanks to a launch script that was recently added to noVNC. Aside from installing dependency packages all we needed to do is clone the git repository, link the vnc.html file, and set the entrypoint to start the script.
 
 ```
 RUN git clone https://github.com/novnc/novnc
@@ -23,9 +27,13 @@ ENTRYPOINT /novnc/utils/launch.sh --vnc vnc-desktop:5901
 
 APB
 ---
+The VNC Desktop APB is pretty standard. Right now we have included two plans, with each plan being tied to a version of Fedora.
 
 ![Image of Distributions](https://github.com/jmontleon/blogpost/blob/master/distributions.png)
 
+One of the first questions that came up when developing the APB was which desktop to use. But since APB's make choices easy we decided to make several available. Right now we have nine options available and would like to add Gnome and Cinnamon if we can figure out how to get them running in a container.
+
+As you might imagine users will also probably prefer one shell and resolution combination over others so we made multiple options available for each. Each of these parameters are passed into the container as environment variables on the vnc-desktop pod and where options are set up by the entrypoint script.
 
 ```
     - name: de
@@ -45,10 +53,10 @@ APB
       type: enum
       enum: ['800x600', '1024x768', '1280x1024', '1360x768', '1440x900', '1920x1080']
       default: '1360x768'
-updatable: true
+      updatable: true
 ```
 
-
+These parameters are exposed in the UI as dropdowns where users can make their selections.
 ![Image of Parameters](https://github.com/jmontleon/blogpost/blob/master/parameters.png)
 
 Updating Your Choices
