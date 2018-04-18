@@ -60,7 +60,13 @@ These parameters are exposed in the UI as dropdowns where users can make their s
 ![Image of Parameters](https://github.com/jmontleon/blogpost/blob/master/parameters.png)
 
 Once choices are made and the APB completes provisioning you will be left with two pods and a route.
+![Image of Ovierview](https://github.com/jmontleon/blogpost/blob/master/overview.png)
 
+Clicking on the link will open a new window. When you press connect you'll be prompted for a password.
+![Image of noVNC](https://github.com/jmontleon/blogpost/blob/master/novnc.png)
+
+If all goes well you'll now have a VNC session running in your browser:
+![Image of Desktop](https://github.com/jmontleon/blogpost/blob/master/desktop.png)
 
 Updating Your Choices
 ---------------------
