@@ -24,8 +24,9 @@ ENTRYPOINT /novnc/utils/launch.sh --vnc vnc-desktop:5901
 APB
 ---
 
+![Image of Distributions](https://github.com/jmontleon/blogpost/blob/master/distributions.png)
 
-
+![Image of Parameters](https://github.com/jmontleon/blogpost/blob/master/parameters.png)
 
 Code Links
 ----------
