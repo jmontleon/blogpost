@@ -1,5 +1,5 @@
-Fixing Golang Execshield Issues on RHEL 8
-=========================================
+How to Fix EL8 Golang Execshield Issues
+=======================================
 
 Introduction
 ------------
