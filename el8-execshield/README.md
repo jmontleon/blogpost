@@ -129,7 +129,7 @@ I decided to make a quick attempt at fixing our RPM with by replacing 'go build'
 
 Third attempt to enable IBT, once more with feeling
 ---------------------------------------------------
-On RHEL 8 %gobuild does not evaluate. More digging revealed that this macro is provided by the `go-rpm-macros` on Fedora. This package does not exist on RHEL 8, but this isn't a major issue for us. We just need a few more lines in the RPM spec to define the macro.
+On RHEL 8 `%gobuild` does not evaluate. More digging revealed that this macro is provided by the `go-rpm-macros` on Fedora. This package does not exist on RHEL 8, but this isn't a major issue for us. We just need a few more lines in the RPM spec to define the macro.
 
 ```
 %if ! 0%{?gobuild:1}
