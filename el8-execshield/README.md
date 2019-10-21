@@ -16,6 +16,7 @@ Additional searches brought me to a helpful [bug](https://bugzilla.redhat.com/sh
 `readelf -hW /path/to/binary | grep Entry`
 
 Then with the return value:
+
 `objdump -d --reloc /path/to/binary | grep -E '^\s+<value>:'`
 
 Confirming the problem:
