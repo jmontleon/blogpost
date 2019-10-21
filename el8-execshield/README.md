@@ -125,7 +125,7 @@ $ objdump -d --reloc hello-world | grep -E '^\s+76220'
    76220:	f3 0f 1e fa          	endbr64 
 ```
 
-I decided to make a quick attempt at fixing our RPM with by replacing 'go build' with '%gobuild' in our RPM and attempting a rebuild, but the build failed.
+I decided to make a quick attempt at fixing our RPM with by replacing `go build` with `%gobuild` in our RPM and attempting a rebuild, but the build failed.
 
 Third attempt to enable IBT, once more with feeling
 ---------------------------------------------------
