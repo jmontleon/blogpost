@@ -15,13 +15,13 @@ Use oc to create the namespace:
 Install OCS
 -----------
 Navigate to OperatorHub in the Openshift Console
-![Operator Hub](https://github.com/jmontleon/blogpost/blob/master/OHub.png)
+![Operator Hub](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OHub.png)
 
 Search for OCS
-![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/OCSSearch.png)
+![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
 
 Install OCS
-![Install OCS](https://github.com/jmontleon/blogpost/blob/master/OCSInstall.png)
+![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSInstall.png)
 
 Create the Noobaa System
 ------------------------
@@ -46,22 +46,22 @@ PV Pool and Bucket
 Install CAM
 -----------
 Navigate to OperatorHub in the Openshift Console
-![Operator Hub](https://github.com/jmontleon/blogpost/blob/master/OHub.png)
+![Operator Hub](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OHub.png)
 
 Search for CAM
-![Search for CAM](https://github.com/jmontleon/blogpost/blob/master/CAMSearch.png)
+![Search for CAM](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CAMSearch.png)
 
 Install CAM
-![Install CAM](https://github.com/jmontleon/blogpost/blob/master/CAMInstall.png)
+![Install CAM](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CAMInstall.png)
 
 Click `View 12 more...`
-![View 12](https://github.com/jmontleon/blogpost/blob/master/View12.png)
+![View 12](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/View12.png)
 
 Select MigrationController
-![Select MC](https://github.com/jmontleon/blogpost/blob/master/SelectMC.png)
+![Select MC](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/SelectMC.png)
 
 Click Create
-![Create MC](https://github.com/jmontleon/blogpost/blob/master/CreateMC.png)
+![Create MC](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CreateMC.png)
 
 Create the Replication Repository
 ---------------------------------
