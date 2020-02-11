@@ -126,4 +126,29 @@ After this resource is created you will want to watch the status and wait for th
 
 Create the Replication Repository
 ---------------------------------
+Use `oc get route -n openshift-migration migration` to find the hostname for the CAM UI and navigate to it.
 
+Click Add next to Replication Repositories once logged in.
+![Add](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/Add.png)
+
+Select AWS from the drop down.
+![AWS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/Aws.png)
+
+1. Give the Replication Repository a name.
+1. The bucket name should be set to match the name chosen in the `ObjectBucketClaim` resource. We used `migstorage` in our example.
+1. Leave the Region blank.
+1. Run `oc get route -n openshift-storage s3` to find the route for NooBaa S3. Prefix the value with https:// when entering it into the UI.
+1. Run `oc get secret -n openshift-storage migstorage -o json | jq -r .data.AWS_ACCESS_KEY_ID | base64 -d` to get the Access Key ID value.
+1. Run `oc get secret -n openshift-storage migstorage -o json | jq -r .data.AWS_SECRET_ACCESS_KEY | base64 -d` to get the Secret Access Key.
+1. Click `Add Repository`.
+
+At this point you should get confirmation that the connection was successful.
+![Update](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/Update.png)
+
+Preparing for Migrations
+------------------------
+From this point set up your source cluster normally and begin your migrations as you normally would. We are looking into automating these steps in a future release of our Operator to make it even easier to get started with OCS and CAM.
+
+Links
+-----
+[mig-operator PV Pool feature branch](https://github.com/fusor/mig-operator/tree/feature-pv-pool)
