@@ -3,9 +3,11 @@ Using an OCS NooBaa PV Pool with CAM 1.1
 
 Introduction
 ------------
-It may be desirable for many reasons to keep your data out of Amazon S3. OCS MCG provides the means to set up a NooBaa PV Pool in order to host your data locally on your cluster. In this example I will use the default gp2 storageclass but if Ceph or another storageclass is desired it could be used just as easily.
+Red Hat provides a tool for helping users migrate workloads from OpenShift 3 to OpenShift 4 called [Cluster Application Migration (CAM) Tool](https://www.openshift.com/learn/topics/migration).  One of the requirements to using CAM is to provide Object Storage, there are several types of Object Storage CAM can work with; AWS S3, Azure Blob Storage, and Google Cloud Storage.  In this blog post we will describe how to leverage [Multi-Cloud Object Gateway (MCG)](https://blog.openshift.com/introducing-multi-cloud-object-gateway-for-openshift/) from [OpenShift Container Storage (OCS) 4](https://www.openshift.com/products/container-storage/) to satisfy CAM's needs for S3 Object Storage, specifically we will use a NooBaa PV Pool Backing Store (tech preview only in OCS 4.2) to allow a solution of object storage that will work for on-premise and even disconnected customers to perform migrations.
 
-These instructions will focus on setting up the CAM Operator, Controller, and UI on Openshift 4.x target cluster and configuring it to use the OCS MCG PV Pool. After this is completed configuration of the source cluster can be completed normally.
+It may be desirable for many reasons to keep your data out of Amazon S3. OCS MCG provides the means to set up a NooBaa PV Pool in order to host your data locally on your cluster. In this example I will use my cluster's default storageclass of 'gp2', yet this could just as easily be Ceph, or another storageclass that has been configured on the cluster.
+
+These instructions will focus on setting up the CAM Operator, Controller, and UI on Openshift 4.3 target cluster and configuring it to use the OCS MCG PV Pool. After this is completed configuration of the source cluster can be completed normally.
 
 Create the requisite namespaces
 ----------------------------------------
@@ -147,7 +149,7 @@ At this point you should get confirmation that the connection was successful.
 
 Preparing for Migrations
 ------------------------
-From this point set up your source cluster normally and begin your migrations as you normally would. We are looking into automating these steps in a future release of our Operator to make it even easier to get started with OCS and CAM.
+From this point set up your source cluster normally and [begin your migrations as you normally would](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.3/html/migration/migrating-openshift-container-platform-3-to-4#migrating-applications-with-cam_targetcluster-3-4). We are looking into automating these steps in a future release of our Operator to make it even easier to get started with OCS and CAM.
 
 Links
 -----
