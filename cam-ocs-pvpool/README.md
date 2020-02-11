@@ -7,10 +7,13 @@ It may be desirable for many reasons to keep your data out of Amazon S3. OCS MCG
 
 These instructions will focus on setting up the CAM Operator, Controller, and UI on Openshift 4.x target cluster and configuring it to use the OCS MCG PV Pool. After this is completed configuration of the source cluster can be completed normally.
 
-Create the openshift-migration namespace
+Create the requisite namespaces
 ----------------------------------------
-Use oc to create the namespace:
-```oc create namespace openshift-migration```
+Use oc to create the namespaces:
+```
+oc create namespace openshift-migration
+oc create namespace ocs-storage
+```
 
 Install OCS
 -----------
@@ -20,14 +23,31 @@ Navigate to OperatorHub in the Openshift Console
 Search for OCS
 ![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
 
-Install OCS
+Install OCS in the openshift-migration namespace
 ![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSInstall.png)
 
 Create the Noobaa System
 ------------------------
-```
+Add the contents below to `noobaa.yml` If you're testing in a small cluster it may be necessary to reduce the CPU requests to `0.1`. Then run `oc create -f noobaa.yml`.
 
 ```
+apiVersion: noobaa.io/v1alpha1
+kind: NooBaa
+metadata:
+  name: noobaa
+  namespace: ocs-storage
+spec:
+ dbResources:
+   requests:
+     cpu: 0.5
+     memory: 1Gi
+ coreResources:
+   requests:
+     cpu: 0.5
+     memory: 500Mi
+```
+
+
 
 PV Pool and Bucket
 ------------------
@@ -51,7 +71,7 @@ Navigate to OperatorHub in the Openshift Console
 Search for CAM
 ![Search for CAM](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CAMSearch.png)
 
-Install CAM
+Install CAM in the openshift-migration namespace
 ![Install CAM](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CAMInstall.png)
 
 Click `View 12 more...`
