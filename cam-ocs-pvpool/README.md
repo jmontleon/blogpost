@@ -24,7 +24,7 @@ Search for OCS
 ![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
 
 Install OCS in the openshift-storage namespace
-![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSInstall.png)
+![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/InstallOCS.png)
 
 Install CAM
 -----------
@@ -38,7 +38,7 @@ Install CAM in the openshift-migration namespace
 ![Install CAM](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CAMInstall.png)
 
 Click `View 12 more...`
-![View 12](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/View12.png)
+![View](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/View.png)
 
 Select MigrationController
 ![Select MC](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/SelectMC.png)
