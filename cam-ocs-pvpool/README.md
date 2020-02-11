@@ -12,7 +12,7 @@ Create the requisite namespaces
 Use oc to create the namespaces:
 ```
 oc create namespace openshift-migration
-oc create namespace ocs-storage
+oc create namespace openshift-storage
 ```
 
 Install OCS
@@ -23,45 +23,8 @@ Navigate to OperatorHub in the Openshift Console
 Search for OCS
 ![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
 
-Install OCS in the ocs-storage namespace
+Install OCS in the openshift-storage namespace
 ![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSInstall.png)
-
-Create the Noobaa System
-------------------------
-Add the contents below to `noobaa.yml` If you're testing in a small cluster it may be necessary to reduce the CPU requests to `0.1`. Then run `oc create -f noobaa.yml`.
-
-```
-apiVersion: noobaa.io/v1alpha1
-kind: NooBaa
-metadata:
-  name: noobaa
-  namespace: ocs-storage
-spec:
- dbResources:
-   requests:
-     cpu: 0.5
-     memory: 1Gi
- coreResources:
-   requests:
-     cpu: 0.5
-     memory: 500Mi
-```
-
-
-
-PV Pool and Bucket
-------------------
-```
-
-```
-
-```
-
-```
-
-```
-
-```
 
 Install CAM
 -----------
@@ -82,6 +45,84 @@ Select MigrationController
 
 Click Create
 ![Create MC](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/CreateMC.png)
+
+Create the Noobaa System
+------------------------
+Add the contents below to `noobaa.yml` If you're testing in a small cluster it may be necessary to reduce the CPU requests to `0.1`. Then run `oc create -f noobaa.yml`.
+
+```
+apiVersion: noobaa.io/v1alpha1
+kind: NooBaa
+metadata:
+  name: noobaa
+  namespace: openshift-storage
+spec:
+ dbResources:
+   requests:
+     cpu: 0.5
+     memory: 1Gi
+ coreResources:
+   requests:
+     cpu: 0.5
+     memory: 500Mi
+```
+
+PV Pool and Bucket
+------------------
+Create `bs.yml` with the following contents. You can change the number of volumes, size of the volumes, and the storageClass used for PV's here. In this example our data will be spread across 3 volumes with 50Gi of space each. Run `oc create -f bs.yml` after making any desired edits.
+
+```
+apiVersion: noobaa.io/v1alpha1
+kind: BackingStore
+metadata:
+  finalizers:
+  - noobaa.io/finalizer
+  labels:
+    app: noobaa
+  name: mcg-pv-pool-bs
+  namespace: openshift-storage
+spec:
+  pvPool:
+    numVolumes: 3
+    resources:
+      requests:
+        storage: 50Gi
+    storageClass: gp2
+  type: pv-pool
+```
+
+Create `bc.yml` with the following contents and then run `oc create -f bc.yml`. Alternative placements are possible, but not covered here.
+```
+apiVersion: noobaa.io/v1alpha1
+kind: BucketClass
+metadata:
+  labels:
+    app: noobaa
+  name: mcg-pv-pool-bc
+  namespace: openshift-storage
+spec:
+  placementPolicy:
+    tiers:
+    - backingStores:
+      - mcg-pv-pool-bs
+      placement: Spread
+```
+
+Create `obc.yml` with the following contents. In this example we will create a bucket called `migstorage`. Run `oc create -f obc.yml` after saving the file.
+```
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: migstorage
+  namespace: openshift-storage
+spec:
+  bucketName: migstorage
+  storageClassName: openshift-storage.noobaa.io
+  additionalConfig:
+    bucketclass: mcg-pv-pool-bc
+```
+
+After this resource is created you will want to watch the status and wait for the objectbucketclaim status to change to `Bound`. This may take 5-10 minutes and can be watched with the command `watch -n 30 'oc get -n openshift-storage objectbucketclaim migstorage -o yaml'`. The noobaa-operator logs can also be monitored for progress.
 
 Create the Replication Repository
 ---------------------------------
