@@ -23,7 +23,7 @@ Navigate to OperatorHub in the Openshift Console
 Search for OCS
 ![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
 
-Install OCS in the openshift-migration namespace
+Install OCS in the ocs-storage namespace
 ![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSInstall.png)
 
 Create the Noobaa System
