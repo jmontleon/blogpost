@@ -1,5 +1,5 @@
-Using an OCS NooBaa PV Pool with CAM 1.1.0
-==========================================
+Using an OCS NooBaa PV Pool with CAM 1.1
+========================================
 
 Introduction
 ------------
