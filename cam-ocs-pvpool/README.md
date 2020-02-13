@@ -22,11 +22,11 @@ Install OpenShift Container Storage
 Navigate to OperatorHub in the Openshift Console
 ![Operator Hub](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OHub.png)
 
-Search for OCS
-![Search for OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
+Search for OpenShift Container Storage
+![Search for OpenShift COntainer Storage](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/OCSSearch.png)
 
-Install OCS in the openshift-storage namespace
-![Install OCS](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/InstallOCS.png)
+Install OpenShift Container Storage in the openshift-storage namespace
+![Install OpenShift Container Storage](https://github.com/jmontleon/blogpost/blob/master/cam-ocs-pvpool/InstallOCS.png)
 
 Install CAM
 -----------
@@ -66,7 +66,7 @@ spec:
  coreResources:
    requests:
      cpu: 0.5
-     memory: 500Mi
+     memory: 1Gi
 ```
 
 PV Pool and Bucket
