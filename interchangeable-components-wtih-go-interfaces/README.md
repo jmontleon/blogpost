@@ -78,6 +78,8 @@ At the moment we are focused on bringing crane-lib up to parity with the current
 
 As we look forward to crane 2.0 more endpoint options such as nodeport, and even services, for intercluster transfers, and additional options for Kubernetes to OpenShift transfers seem like good candidates for enabling transfers within in the requirements of whatever network(s) the clusters are running in.
 
+We would also welcome contributions improving or adding options to facilitate transfer within or between clusters.
+
 ## 
 [Konveyor Crane](https://www.konveyor.io/crane)
 [crane-lib](https://github.com/konveyor/crane-lib)
