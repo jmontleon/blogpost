@@ -67,6 +67,9 @@ For transfer rsync and rclone were implemented. For transport we implemented stu
 
 Through testing we developed a [Compatibility Matrix](https://github.com/konveyor/crane-lib/blob/main/state_transfer/README.md#compatibility-matrix) that verified our expectations while allowing us to resolve issues and tweak the interfaces.
 
+Now when setting up each layer of our transfer we only need to be concerned with choosing the appropriate option, which is as simple as picking, for example 
+`transfer, err := rclone.NewTransfer(s, r, srcCfg, destCfg, pvcList)` or `transfer, err := rsync.NewTransfer(s, r, srcCfg, destCfg, pvcList)`
+
 ## Refining the Interfaces
 Once we started testing more deeply we realized we did not need and did not want setters for every parameter so we elliminated them so that we had only getters. Most all data is entered at creation and becomes immutable in this way. There is a burden to creating each function defined in the interface, even if they are relatively simple, so ellimating them eases development of future options. Ideally one should be able to copy an interface and adjust configs for the new component they would like to use at the given layer and be ready to go almost within minutes.
 
@@ -78,8 +81,6 @@ As we look forward to crane 2.0 more endpoint options such as nodeport, and even
 ## 
 [Konveyor Crane](https://www.konveyor.io/crane)
 [crane-lib](https://github.com/konveyor/crane-lib)
+[cran-lib example test](https://github.com/konveyor/crane-lib/blob/main/state_transfer/example_test.go)
 [crane 2.0](https://github.com/konveyor/crane)
 [Go by Example: Interfaces](https://gobyexample.com/interfaces)
-
-
-
