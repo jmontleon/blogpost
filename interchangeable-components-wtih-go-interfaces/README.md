@@ -61,7 +61,7 @@ type Endpoint interface {
 }
 ```
 
-By doing this we We then set off to create at least two implementations at each layer to prove that they were easily interchangeable and help us refine the interfaces. To do this we needed to ensure that each one implemented the interface.
+We then set off to create at least two implementations at each layer to prove that they were easily interchangeable and help us refine the interfaces. To do this we needed to ensure that each one implemented the interface.
 
 For transfer rsync and rclone were implemented. For transport we implemented stunnel and null (there is no sense in wrapping applications that provide their own encryption) and for endpoints we added route and load balancer.
 
