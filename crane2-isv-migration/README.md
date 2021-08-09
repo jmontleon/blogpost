@@ -12,7 +12,7 @@ The Konveyor Crane project  has been leading the way in providing the capability
 - Prepare applications for use with GitOps.
 - Enable Kubernetes to OpenShift migrations
 
-To prove the reusability of these libraries we will replace code in Crane 1.x with crane-lib as different aspects reach maturity. We intend to use the new state transfer library in crane 1.6.0. We will also be releasing a CLI utlity that aims to allow doing migrations in more granular steps. We also ideas for other projects we would like to integrate this library with so that we can all benefit by sharing expertise and development.
+To prove the reusability of these libraries we will replace code in Crane 1.x with crane-lib as different aspects reach maturity. We intend to use the new state transfer library in crane 1.6.0. We will also be releasing a CLI utlity that aims to allow doing migrations in more granular steps. We also have ideas for other projects we would like to integrate this library with so that we can all benefit by sharing expertise and development.
 
 ## First Steps
 Our first concern was proving that we could orchestrate a migration from one cluster to another with a CLI utility and reduced privileges so we set off to create a proof of concept. The developers on the team each worked on an aspect and created a utility that, for the purposes of demoing, we would string together using scripts in order to complete a migration.  
@@ -33,7 +33,7 @@ As testing in development proceeded the migration steps solidified:
 
 As work progressed additional minor bugs were also uncovered and fixed along the way and performance issues were addressed to the extent we could with this workflow.
 
-The final migration completed on July 15th, after 9 days, most of which was dealing with image migrations. Multiple batches of images were migrated in parallel and we learned that at about 10 parallel runs it would take down the cluster. The feedback we received is that namespace creation is extremely intensive, particularly for etcd. Parallel runs were limited to a max of 7 instances after this painful lesson, which prevented further trouble. The K8S resource migration was completed afterwards and was uneventful.
+The final migration completed on July 15th, after 9 days, most of which was dealing with image migrations. Multiple batches of images were migrated in parallel and we learned that at about 10 parallel runs it would take down the cluster. The feedback we received is that namespace creation is extremely intensive, particularly for etcd. Parallel runs were limited to a max of 7 instances after this painful lesson, with no more than 3 of them creating namespaces simultaneously, which prevented further trouble. The K8S resource migration was completed afterwards and was uneventful.
 
 ## Next Steps
 The imagestream migration utility proved to be slower than expected on reruns. During the final migration it was observed that many of the images had a large number of tags. A possible cause for this is that we are unable to affect the QPS and Burst setting for API calls when using Ansible. Since Ansible was doing most of the heavy lifting outside of the actual transfers this may have been a cause. We experienced similarly poor results when operating on a large number of resources with the PoC utilities as well.
