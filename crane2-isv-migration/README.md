@@ -22,7 +22,7 @@ We already had a utility to migrate images.  Resource discovery, export, and tra
 In April we were able to demonstrate a non-admin migration of a stateful application from EKS to ROSA.
 
 ## ISV migration
-An opportunity came up to use Crane 2.0 for the ISV migration. The production migration cluster contains about 6,500 namespaces, and over 100,000 image objects. It is rated as the top cluster by object count on OSD, and 12th globally, so it would be an excellent trial for the Crane 2.0 utility to pass, but we were missing functionality to perform such a large migration.
+An opportunity came up to use Crane 2.0 for the ISV migration. The production migration cluster contains about 6,500 namespaces we had to migrate, and over 100,000 image objects. It is rated as the top cluster by object count on OSD, and 12th globally, so it would be an excellent trial for the Crane 2.0 utility to pass, but we were missing functionality to perform such a large migration.
 
 Fortunately we had a development environment to work in that contained a subset of the date in production. The most obvious problem with the new utility was the inability to process more than one namespace at a time. In order to facilitate batch migration we decided to use Ansible rather than extensively rewriting PoC code that would be thrown away. We also decided to make use of the existing image migration utility, Konveyor ImageStream-migrate, since the Crane CLI does not yet have this functionality. Though imagestream-migrate proved overall to be reliable we discovered that the documentation was repetitive and difficult to follow, so we made a large update to clarify the installation and migration procedures.
 
